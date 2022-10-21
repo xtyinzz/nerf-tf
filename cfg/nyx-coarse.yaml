@@ -1,0 +1,40 @@
+expname: nyx256-500-coarse
+basedir: ./log
+datadir: ./data/nyx256-500
+
+netdepth: 8
+netwidth: 256
+netdepth_fine: 8
+netwidth_fine: 256
+N_rand: 4096
+
+N_samples: 128
+N_importance: 0
+perturb: 1.
+use_viewdirs: True
+raw_noise_std: 1e0
+no_batching: True
+test_split: 0.025
+
+render_only: False
+render_test: True
+
+precrop_frac: 0.5
+
+dataset_type: nyx
+white_bkgd: False
+lindisp: False
+
+i_print: 500
+i_weights: 10000
+i_testset: 10000
+
+# resume training:
+no_reload: False
+
+# development configs in windows local
+# steps: comment signal handler, prints uncomment near far, coord min max mean
+# N_rand: 32
+# i_print: 10
+# i_weights: 1
+# i_testset: 50

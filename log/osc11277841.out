@@ -1,0 +1,154 @@
+2022-05-24 03:53:42.159287: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcuda.so.1
+2022-05-24 03:53:42.185603: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1618] Found device 0 with properties: 
+name: Tesla V100-PCIE-16GB major: 7 minor: 0 memoryClockRate(GHz): 1.38
+pciBusID: 0000:d8:00.0
+2022-05-24 03:53:42.193577: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.0
+2022-05-24 03:53:42.358544: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10.0
+2022-05-24 03:53:42.416317: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10.0
+2022-05-24 03:53:42.465272: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10.0
+2022-05-24 03:53:42.540983: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10.0
+2022-05-24 03:53:42.598779: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10.0
+2022-05-24 03:53:42.787727: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2022-05-24 03:53:42.788727: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1746] Adding visible gpu devices: 0
+2022-05-24 03:53:42.789716: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 AVX512F FMA
+2022-05-24 03:53:42.816552: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2400000000 Hz
+2022-05-24 03:53:42.816833: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55a40eb16a00 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2022-05-24 03:53:42.816961: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+2022-05-24 03:53:42.942442: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55a40eb18550 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+2022-05-24 03:53:42.942586: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Tesla V100-PCIE-16GB, Compute Capability 7.0
+2022-05-24 03:53:42.942994: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1618] Found device 0 with properties: 
+name: Tesla V100-PCIE-16GB major: 7 minor: 0 memoryClockRate(GHz): 1.38
+pciBusID: 0000:d8:00.0
+2022-05-24 03:53:42.943101: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.0
+2022-05-24 03:53:42.943155: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10.0
+2022-05-24 03:53:42.943203: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10.0
+2022-05-24 03:53:42.943250: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10.0
+2022-05-24 03:53:42.943302: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10.0
+2022-05-24 03:53:42.943349: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10.0
+2022-05-24 03:53:42.943396: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2022-05-24 03:53:42.943803: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1746] Adding visible gpu devices: 0
+2022-05-24 03:53:42.944841: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.0
+2022-05-24 03:53:42.945524: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1159] Device interconnect StreamExecutor with strength 1 edge matrix:
+2022-05-24 03:53:42.945592: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1165]      0 
+2022-05-24 03:53:42.945641: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1178] 0:   N 
+2022-05-24 03:53:42.946120: W tensorflow/core/common_runtime/gpu/gpu_bfc_allocator.cc:39] Overriding allow_growth setting because the TF_FORCE_GPU_ALLOW_GROWTH environment variable is set. Original config value was 0.
+2022-05-24 03:53:42.946214: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1304] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 15061 MB memory) -> physical GPU (device: 0, name: Tesla V100-PCIE-16GB, pci bus id: 0000:d8:00.0, compute capability: 7.0)
+WARNING:tensorflow:
+The TensorFlow contrib module will not be included in TensorFlow 2.0.
+For more information, please see:
+  * https://github.com/tensorflow/community/blob/master/rfcs/20180907-contrib-sunset.md
+  * https://github.com/tensorflow/addons
+  * https://github.com/tensorflow/io (for I/O related ops)
+If you depend on functionality not listed there, please file an issue.
+
+2022-05-24 03:54:06.863770: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10.0
+WARNING:tensorflow:From /users/PAS0027/xiong336/project/nerf-tf/run_nerf_helpers.py:209: where (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+WARNING:tensorflow:From /users/PAS0027/xiong336/project/nerf-tf/run_nerf_helpers.py:14: The name tf.log is deprecated. Please use tf.math.log instead.
+
+hwf: [256, 256, 955.4050067376327] near far: 2.7369158 9.428282
+MODEL 63 27 <class 'int'> <class 'int'> True
+(?, 90) (?, 63) (?, 27)
+MODEL 63 27 <class 'int'> <class 'int'> True
+(?, 90) (?, 63) (?, 27)
+Not ndc!
+Found ckpts ['./log/nyx256_200_global_clip_diag_divfocal/model_000000.npy']
+Reloading from ./log/nyx256_200_global_clip_diag_divfocal/model_000000.npy
+Resetting step to 1
+Reloading fine from ./log/nyx256_200_global_clip_diag_divfocal/model_fine_000000.npy
+Begin
+TRAIN views are [115  69 170 174  45  66 182 165  78 186 177  56 152  82  68 124  16 148
+  93  65  60  84  67 125 132   9  18  55  75 150 104 135 137 164  76  79
+ 197  38  24 122 195  29  19 143  86 114 173   5 126 117  73 140  98 172
+  96 169  97  31  12  35 119  42 189  90 136  51 127 162  41 118 113  26
+ 139 100 111   2  77  46 187 191  85 161  36 190  61  22 141 101  33  11
+ 194 159   6  27 120   4  32 142 145 109 144  10  62 112 146 166   0 198
+ 153  70 123  64  44 163  28  40 108 155 156  25  23 184 147  81  39 168
+  47  94 154  43 138   3 105  53 133 180 178 185  49  80  34   7 110  91
+  83 176 181  89   8  13  59 171 131  17  72 175 134 167 183  63  54 107
+  50 196  58  48  88  21  57 160 192 129  37 157 193   1  52 149 130 151
+ 103  99 116  87  74 121 199  20 188  71 106  14  92 179 102]
+TEST views are [ 95  15  30 158 128]
+VAL views are [ 95  15  30 158 128]
+[TRAIN] Iter: 1 Loss: 0.26620909571647644  PSNR: 8.475905418395996  Global Step: 1  Time 1.95593
+[TRAIN] Iter: 2 Loss: 0.17216381430625916  PSNR: 10.337662696838379  Global Step: 2  Time 0.58608
+[TRAIN] Iter: 3 Loss: 0.1260826736688614  PSNR: 11.531767845153809  Global Step: 3  Time 0.54461
+[TRAIN] Iter: 4 Loss: 0.0980662852525711  PSNR: 13.16517448425293  Global Step: 4  Time 0.53525
+[TRAIN] Iter: 5 Loss: 0.11066672950983047  PSNR: 12.447343826293945  Global Step: 5  Time 0.53657
+[TRAIN] Iter: 6 Loss: 0.10646606981754303  PSNR: 12.548221588134766  Global Step: 6  Time 0.53514
+[TRAIN] Iter: 7 Loss: 0.11813074350357056  PSNR: 12.070630073547363  Global Step: 7  Time 0.53521
+[TRAIN] Iter: 8 Loss: 0.1048547625541687  PSNR: 12.54267406463623  Global Step: 8  Time 0.53927
+[TRAIN] Iter: 9 Loss: 0.1055411845445633  PSNR: 12.40810489654541  Global Step: 9  Time 0.54525
+[TRAIN] Iter: 500 Loss: 0.0067845797166228294  PSNR: 24.694610595703125  Global Step: 500  Time 0.58385
+[TRAIN] Iter: 1000 Loss: 0.005638103932142258  PSNR: 25.725967407226562  Global Step: 1000  Time 0.57675
+[TRAIN] Iter: 1500 Loss: 0.005862478166818619  PSNR: 25.612743377685547  Global Step: 1500  Time 0.53134
+[TRAIN] Iter: 2000 Loss: 0.0059148892760276794  PSNR: 25.748422622680664  Global Step: 2000  Time 0.54248
+[TRAIN] Iter: 2500 Loss: 0.006507746875286102  PSNR: 25.303430557250977  Global Step: 2500  Time 0.53469
+[TRAIN] Iter: 3000 Loss: 0.005721261724829674  PSNR: 25.65869140625  Global Step: 3000  Time 0.55988
+[TRAIN] Iter: 3500 Loss: 0.004332320298999548  PSNR: 27.284622192382812  Global Step: 3500  Time 0.55227
+[TRAIN] Iter: 4000 Loss: 0.0032589957118034363  PSNR: 28.338294982910156  Global Step: 4000  Time 0.56738
+[TRAIN] Iter: 4500 Loss: 0.004057913087308407  PSNR: 27.50608253479004  Global Step: 4500  Time 0.58477
+[TRAIN] Iter: 5000 Loss: 0.00441108550876379  PSNR: 27.23242950439453  Global Step: 5000  Time 0.57625
+[TRAIN] Iter: 5500 Loss: 0.003893757238984108  PSNR: 28.298809051513672  Global Step: 5500  Time 0.54685
+[TRAIN] Iter: 6000 Loss: 0.005275308154523373  PSNR: 26.803396224975586  Global Step: 6000  Time 0.53189
+[TRAIN] Iter: 6500 Loss: 0.0025708284229040146  PSNR: 29.317672729492188  Global Step: 6500  Time 0.58043
+[TRAIN] Iter: 7000 Loss: 0.0038956895004957914  PSNR: 27.779129028320312  Global Step: 7000  Time 0.58080
+[TRAIN] Iter: 7500 Loss: 0.004161428660154343  PSNR: 27.501266479492188  Global Step: 7500  Time 0.56859
+[TRAIN] Iter: 8000 Loss: 0.0036715897731482983  PSNR: 28.377975463867188  Global Step: 8000  Time 0.58295
+[TRAIN] Iter: 8500 Loss: 0.0035898261703550816  PSNR: 28.326269149780273  Global Step: 8500  Time 0.53073
+[TRAIN] Iter: 9000 Loss: 0.0037572444416582584  PSNR: 27.7802677154541  Global Step: 9000  Time 0.53384
+[TRAIN] Iter: 9500 Loss: 0.004249490797519684  PSNR: 28.25442886352539  Global Step: 9500  Time 0.57754
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/model_010000.npy
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/model_fine_010000.npy
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/optimizer_010000.npy
+[TRAIN] Iter: 10000 Loss: 0.004333725664764643  PSNR: 27.62694549560547  Global Step: 10000  Time 0.54627
+[TRAIN] Iter: 10500 Loss: 0.00437534786760807  PSNR: 27.641380310058594  Global Step: 10500  Time 0.53239
+[TRAIN] Iter: 11000 Loss: 0.0029381592757999897  PSNR: 29.587377548217773  Global Step: 11000  Time 0.58701
+[TRAIN] Iter: 11500 Loss: 0.003961241338402033  PSNR: 27.653949737548828  Global Step: 11500  Time 0.58137
+[TRAIN] Iter: 12000 Loss: 0.0037540323100984097  PSNR: 28.106382369995117  Global Step: 12000  Time 0.54805
+[TRAIN] Iter: 12500 Loss: 0.004162986297160387  PSNR: 27.627897262573242  Global Step: 12500  Time 0.58197
+[TRAIN] Iter: 13000 Loss: 0.0036025044973939657  PSNR: 28.544179916381836  Global Step: 13000  Time 0.56047
+[TRAIN] Iter: 13500 Loss: 0.0036255144514143467  PSNR: 28.40224266052246  Global Step: 13500  Time 0.56395
+[TRAIN] Iter: 14000 Loss: 0.002344893291592598  PSNR: 30.570730209350586  Global Step: 14000  Time 0.58449
+[TRAIN] Iter: 14500 Loss: 0.0029957443475723267  PSNR: 29.35101318359375  Global Step: 14500  Time 0.56640
+[TRAIN] Iter: 15000 Loss: 0.0023108746390789747  PSNR: 30.346664428710938  Global Step: 15000  Time 0.58597
+[TRAIN] Iter: 15500 Loss: 0.0032995138317346573  PSNR: 28.45658302307129  Global Step: 15500  Time 0.58685
+[TRAIN] Iter: 16000 Loss: 0.0031935921870172024  PSNR: 28.694869995117188  Global Step: 16000  Time 0.58473
+[TRAIN] Iter: 16500 Loss: 0.0033414005301892757  PSNR: 29.039569854736328  Global Step: 16500  Time 0.57855
+[TRAIN] Iter: 17000 Loss: 0.0020375647582113743  PSNR: 30.861404418945312  Global Step: 17000  Time 0.58358
+[TRAIN] Iter: 17500 Loss: 0.0026688440702855587  PSNR: 29.96950340270996  Global Step: 17500  Time 0.56145
+[TRAIN] Iter: 18000 Loss: 0.003128158627077937  PSNR: 28.91312026977539  Global Step: 18000  Time 0.58774
+[TRAIN] Iter: 18500 Loss: 0.003419574350118637  PSNR: 29.09684181213379  Global Step: 18500  Time 0.53283
+[TRAIN] Iter: 19000 Loss: 0.003286446910351515  PSNR: 29.1496639251709  Global Step: 19000  Time 0.55831
+[TRAIN] Iter: 19500 Loss: 0.002912272000685334  PSNR: 29.675495147705078  Global Step: 19500  Time 0.58545
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/model_020000.npy
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/model_fine_020000.npy
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/optimizer_020000.npy
+[TRAIN] Iter: 20000 Loss: 0.002716743154451251  PSNR: 28.326631546020508  Global Step: 20000  Time 0.58555
+[TRAIN] Iter: 20500 Loss: 0.002444205339998007  PSNR: 30.47470474243164  Global Step: 20500  Time 0.57575
+[TRAIN] Iter: 21000 Loss: 0.0025119585916399956  PSNR: 30.559537887573242  Global Step: 21000  Time 0.58595
+[TRAIN] Iter: 21500 Loss: 0.0026911308523267508  PSNR: 29.43866539001465  Global Step: 21500  Time 0.57545
+[TRAIN] Iter: 22000 Loss: 0.0031615206971764565  PSNR: 29.201688766479492  Global Step: 22000  Time 0.53209
+[TRAIN] Iter: 22500 Loss: 0.002504382748156786  PSNR: 30.019657135009766  Global Step: 22500  Time 0.58249
+[TRAIN] Iter: 23000 Loss: 0.0029976926743984222  PSNR: 29.315088272094727  Global Step: 23000  Time 0.58329
+[TRAIN] Iter: 23500 Loss: 0.0017890918534249067  PSNR: 31.94452667236328  Global Step: 23500  Time 0.58445
+[TRAIN] Iter: 24000 Loss: 0.002310724463313818  PSNR: 30.828466415405273  Global Step: 24000  Time 0.57888
+[TRAIN] Iter: 24500 Loss: 0.0020634508691728115  PSNR: 31.021949768066406  Global Step: 24500  Time 0.58574
+[TRAIN] Iter: 25000 Loss: 0.0022926407400518656  PSNR: 30.530658721923828  Global Step: 25000  Time 0.57853
+[TRAIN] Iter: 25500 Loss: 0.0032149581238627434  PSNR: 29.3259334564209  Global Step: 25500  Time 0.56124
+[TRAIN] Iter: 26000 Loss: 0.0026313355192542076  PSNR: 30.01289176940918  Global Step: 26000  Time 0.58463
+[TRAIN] Iter: 26500 Loss: 0.0027062788140028715  PSNR: 30.090200424194336  Global Step: 26500  Time 0.57893
+[TRAIN] Iter: 27000 Loss: 0.0015904292231425643  PSNR: 31.999549865722656  Global Step: 27000  Time 0.58494
+[TRAIN] Iter: 27500 Loss: 0.0025677508674561977  PSNR: 30.47368049621582  Global Step: 27500  Time 0.58341
+[TRAIN] Iter: 28000 Loss: 0.0026721497997641563  PSNR: 30.01766014099121  Global Step: 28000  Time 0.55710
+[TRAIN] Iter: 28500 Loss: 0.0022357101552188396  PSNR: 30.81818199157715  Global Step: 28500  Time 0.58064
+[TRAIN] Iter: 29000 Loss: 0.003324795514345169  PSNR: 28.768510818481445  Global Step: 29000  Time 0.56389
+[TRAIN] Iter: 29500 Loss: 0.0033674731384962797  PSNR: 29.020915985107422  Global Step: 29500  Time 0.58044
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/model_030000.npy
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/model_fine_030000.npy
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/optimizer_030000.npy
+[TRAIN] Iter: 30000 Loss: 0.0014872124884277582  PSNR: 32.38713836669922  Global Step: 30000  Time 0.55701
+[TRAIN] Iter: 30500 Loss: 0.0025122498627752066  PSNR: 30.4779109954834  Global Step: 30500  Time 0.56418
+[TRAIN] Iter: 31000 Loss: 0.00222220690920949  PSNR: 31.59697723388672  Global Step: 31000  Time 0.58521
+srun: error: p0237: task 0: User defined signal 1

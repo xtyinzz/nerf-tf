@@ -1,0 +1,363 @@
+2022-05-30 07:51:32.867618: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcuda.so.1
+2022-05-30 07:51:32.906920: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1618] Found device 0 with properties: 
+name: Tesla V100-PCIE-16GB major: 7 minor: 0 memoryClockRate(GHz): 1.38
+pciBusID: 0000:d8:00.0
+2022-05-30 07:51:32.912515: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.0
+2022-05-30 07:51:32.977416: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10.0
+2022-05-30 07:51:33.021300: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10.0
+2022-05-30 07:51:33.040661: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10.0
+2022-05-30 07:51:33.146740: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10.0
+2022-05-30 07:51:33.379095: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10.0
+2022-05-30 07:51:33.681470: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2022-05-30 07:51:33.682309: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1746] Adding visible gpu devices: 0
+2022-05-30 07:51:33.682896: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 AVX512F FMA
+2022-05-30 07:51:33.702832: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2400000000 Hz
+2022-05-30 07:51:33.703112: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x558f34bf4e90 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2022-05-30 07:51:33.703197: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+2022-05-30 07:51:33.828791: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x558f34bf69e0 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+2022-05-30 07:51:33.828925: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Tesla V100-PCIE-16GB, Compute Capability 7.0
+2022-05-30 07:51:33.829308: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1618] Found device 0 with properties: 
+name: Tesla V100-PCIE-16GB major: 7 minor: 0 memoryClockRate(GHz): 1.38
+pciBusID: 0000:d8:00.0
+2022-05-30 07:51:33.829404: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.0
+2022-05-30 07:51:33.829450: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10.0
+2022-05-30 07:51:33.829491: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10.0
+2022-05-30 07:51:33.829532: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10.0
+2022-05-30 07:51:33.829573: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10.0
+2022-05-30 07:51:33.829613: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10.0
+2022-05-30 07:51:33.829659: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2022-05-30 07:51:33.830015: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1746] Adding visible gpu devices: 0
+2022-05-30 07:51:33.831037: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.0
+2022-05-30 07:51:33.831637: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1159] Device interconnect StreamExecutor with strength 1 edge matrix:
+2022-05-30 07:51:33.831706: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1165]      0 
+2022-05-30 07:51:33.831752: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1178] 0:   N 
+2022-05-30 07:51:33.832185: W tensorflow/core/common_runtime/gpu/gpu_bfc_allocator.cc:39] Overriding allow_growth setting because the TF_FORCE_GPU_ALLOW_GROWTH environment variable is set. Original config value was 0.
+2022-05-30 07:51:33.832273: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1304] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 15061 MB memory) -> physical GPU (device: 0, name: Tesla V100-PCIE-16GB, pci bus id: 0000:d8:00.0, compute capability: 7.0)
+WARNING:tensorflow:
+The TensorFlow contrib module will not be included in TensorFlow 2.0.
+For more information, please see:
+  * https://github.com/tensorflow/community/blob/master/rfcs/20180907-contrib-sunset.md
+  * https://github.com/tensorflow/addons
+  * https://github.com/tensorflow/io (for I/O related ops)
+If you depend on functionality not listed there, please file an issue.
+
+2022-05-30 07:51:50.664255: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10.0
+WARNING:tensorflow:From /users/PAS0027/xiong336/project/nerf-tf/run_nerf_helpers.py:209: where (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+WARNING:tensorflow:From /users/PAS0027/xiong336/project/nerf-tf/run_nerf_helpers.py:14: The name tf.log is deprecated. Please use tf.math.log instead.
+
+fov <HDF5 dataset "fov": shape (), type "<i4">
+mv <HDF5 dataset "mv": shape (120, 4, 4), type "<f4">
+mvInvs <HDF5 dataset "mvInvs": shape (120, 4, 4), type "<f4">
+hwf: [256, 256, 955.4050067376327] near far: 2.7369158 9.428282
+MODEL 63 27 <class 'int'> <class 'int'> True
+(?, 90) (?, 63) (?, 27)
+MODEL 63 27 <class 'int'> <class 'int'> True
+(?, 90) (?, 63) (?, 27)
+Not ndc!
+Found ckpts ['./log/nyx256_200_global_clip_diag_divfocal/model_000000.npy', './log/nyx256_200_global_clip_diag_divfocal/model_010000.npy', './log/nyx256_200_global_clip_diag_divfocal/model_020000.npy', './log/nyx256_200_global_clip_diag_divfocal/model_030000.npy', './log/nyx256_200_global_clip_diag_divfocal/model_040000.npy', './log/nyx256_200_global_clip_diag_divfocal/model_050000.npy', './log/nyx256_200_global_clip_diag_divfocal/model_060000.npy', './log/nyx256_200_global_clip_diag_divfocal/model_070000.npy', './log/nyx256_200_global_clip_diag_divfocal/model_080000.npy', './log/nyx256_200_global_clip_diag_divfocal/model_090000.npy', './log/nyx256_200_global_clip_diag_divfocal/model_100000.npy', './log/nyx256_200_global_clip_diag_divfocal/model_110000.npy', './log/nyx256_200_global_clip_diag_divfocal/model_120000.npy', './log/nyx256_200_global_clip_diag_divfocal/model_122676.npy', './log/nyx256_200_global_clip_diag_divfocal/model_130000.npy', './log/nyx256_200_global_clip_diag_divfocal/model_140000.npy', './log/nyx256_200_global_clip_diag_divfocal/model_150000.npy', './log/nyx256_200_global_clip_diag_divfocal/model_160000.npy', './log/nyx256_200_global_clip_diag_divfocal/model_170000.npy', './log/nyx256_200_global_clip_diag_divfocal/model_172794.npy', './log/nyx256_200_global_clip_diag_divfocal/model_180000.npy', './log/nyx256_200_global_clip_diag_divfocal/model_190000.npy', './log/nyx256_200_global_clip_diag_divfocal/model_200000.npy', './log/nyx256_200_global_clip_diag_divfocal/model_210000.npy', './log/nyx256_200_global_clip_diag_divfocal/model_220000.npy', './log/nyx256_200_global_clip_diag_divfocal/model_230000.npy', './log/nyx256_200_global_clip_diag_divfocal/model_240000.npy', './log/nyx256_200_global_clip_diag_divfocal/model_250000.npy', './log/nyx256_200_global_clip_diag_divfocal/model_260000.npy', './log/nyx256_200_global_clip_diag_divfocal/model_264489.npy']
+Reloading from ./log/nyx256_200_global_clip_diag_divfocal/model_264489.npy
+Resetting step to 264490
+Reloading fine from ./log/nyx256_200_global_clip_diag_divfocal/model_fine_264489.npy
+Begin
+TRAIN views are [115  69 170 174  45  66 182 165  78 186 177  56 152  82  68 124  16 148
+  93  65  60  84  67 125 132   9  18  55  75 150 104 135 137 164  76  79
+ 197  38  24 122 195  29  19 143  86 114 173   5 126 117  73 140  98 172
+  96 169  97  31  12  35 119  42 189  90 136  51 127 162  41 118 113  26
+ 139 100 111   2  77  46 187 191  85 161  36 190  61  22 141 101  33  11
+ 194 159   6  27 120   4  32 142 145 109 144  10  62 112 146 166   0 198
+ 153  70 123  64  44 163  28  40 108 155 156  25  23 184 147  81  39 168
+  47  94 154  43 138   3 105  53 133 180 178 185  49  80  34   7 110  91
+  83 176 181  89   8  13  59 171 131  17  72 175 134 167 183  63  54 107
+  50 196  58  48  88  21  57 160 192 129  37 157 193   1  52 149 130 151
+ 103  99 116  87  74 121 199  20 188  71 106  14  92 179 102]
+TEST views are [ 95  15  30 158 128]
+VAL views are [ 95  15  30 158 128]
+[TRAIN] Iter: 264500 Loss: 0.0018652735743671656  PSNR: 32.274959564208984  Global Step: 264500  Time 0.54455
+[TRAIN] Iter: 265000 Loss: 0.0022914607543498278  PSNR: 31.56451988220215  Global Step: 265000  Time 0.53869
+[TRAIN] Iter: 265500 Loss: 0.001506485277786851  PSNR: 32.601539611816406  Global Step: 265500  Time 0.54211
+[TRAIN] Iter: 266000 Loss: 0.0016443096101284027  PSNR: 32.23412322998047  Global Step: 266000  Time 0.54548
+[TRAIN] Iter: 266500 Loss: 0.002030451549217105  PSNR: 31.464824676513672  Global Step: 266500  Time 0.58547
+[TRAIN] Iter: 267000 Loss: 0.0019229943864047527  PSNR: 32.15500259399414  Global Step: 267000  Time 0.57789
+[TRAIN] Iter: 267500 Loss: 0.0018971033859997988  PSNR: 32.303627014160156  Global Step: 267500  Time 0.58373
+[TRAIN] Iter: 268000 Loss: 0.0016514889430254698  PSNR: 32.77622604370117  Global Step: 268000  Time 0.58286
+[TRAIN] Iter: 268500 Loss: 0.002134202281013131  PSNR: 31.499900817871094  Global Step: 268500  Time 0.58180
+[TRAIN] Iter: 269000 Loss: 0.0020057482179254293  PSNR: 32.00179672241211  Global Step: 269000  Time 0.58166
+[TRAIN] Iter: 269500 Loss: 0.0011860609520226717  PSNR: 33.76447296142578  Global Step: 269500  Time 0.58698
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/model_270000.npy
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/model_fine_270000.npy
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/optimizer_270000.npy
+test poses shape (5, 4, 4)
+render time img 0: 6.4373016357421875e-06  RGB and Disp Map Shape: (256, 256, 3) (256, 256)
+  test img 0 PSNR: 31.71614170074463
+render time img 1: 3.1701390743255615  test img 1 PSNR: 30.67676305770874
+render time img 2: 3.1942200660705566  test img 2 PSNR: 32.66454458236694
+render time img 3: 3.140652894973755  test img 3 PSNR: 32.94881820678711
+render time img 4: 3.196348190307617  test img 4 PSNR: 31.56362771987915
+Saved test set
+[TRAIN] Iter: 270000 Loss: 0.0024683400988578796  PSNR: 31.15850067138672  Global Step: 270000  Time 0.58576
+[TRAIN] Iter: 270500 Loss: 0.0016987130511552095  PSNR: 32.47053527832031  Global Step: 270500  Time 0.56831
+[TRAIN] Iter: 271000 Loss: 0.001884734956547618  PSNR: 32.10281753540039  Global Step: 271000  Time 0.58603
+[TRAIN] Iter: 271500 Loss: 0.0016964611131697893  PSNR: 32.29759979248047  Global Step: 271500  Time 0.58659
+[TRAIN] Iter: 272000 Loss: 0.0021071075461804867  PSNR: 32.07584762573242  Global Step: 272000  Time 0.58602
+[TRAIN] Iter: 272500 Loss: 0.002089729532599449  PSNR: 31.623477935791016  Global Step: 272500  Time 0.58329
+[TRAIN] Iter: 273000 Loss: 0.0014487940352410078  PSNR: 33.15629196166992  Global Step: 273000  Time 0.58710
+[TRAIN] Iter: 273500 Loss: 0.0015316253993660212  PSNR: 32.894996643066406  Global Step: 273500  Time 0.58484
+[TRAIN] Iter: 274000 Loss: 0.0013989952858537436  PSNR: 33.48821258544922  Global Step: 274000  Time 0.58406
+[TRAIN] Iter: 274500 Loss: 0.0022242183331400156  PSNR: 31.405101776123047  Global Step: 274500  Time 0.54065
+[TRAIN] Iter: 275000 Loss: 0.0016166106797754765  PSNR: 31.921958923339844  Global Step: 275000  Time 0.58593
+[TRAIN] Iter: 275500 Loss: 0.001230205176398158  PSNR: 34.40024948120117  Global Step: 275500  Time 0.58704
+[TRAIN] Iter: 276000 Loss: 0.002122208010405302  PSNR: 32.094581604003906  Global Step: 276000  Time 0.58519
+[TRAIN] Iter: 276500 Loss: 0.0015986820217221975  PSNR: 33.00101852416992  Global Step: 276500  Time 0.58717
+[TRAIN] Iter: 277000 Loss: 0.00206106249243021  PSNR: 31.353580474853516  Global Step: 277000  Time 0.58178
+[TRAIN] Iter: 277500 Loss: 0.0019491647835820913  PSNR: 32.181217193603516  Global Step: 277500  Time 0.58626
+[TRAIN] Iter: 278000 Loss: 0.002103141974657774  PSNR: 32.16884994506836  Global Step: 278000  Time 0.58477
+[TRAIN] Iter: 278500 Loss: 0.00216160761192441  PSNR: 31.490753173828125  Global Step: 278500  Time 0.58259
+[TRAIN] Iter: 279000 Loss: 0.0019976794719696045  PSNR: 31.82504653930664  Global Step: 279000  Time 0.58488
+[TRAIN] Iter: 279500 Loss: 0.0020526114385575056  PSNR: 31.574678421020508  Global Step: 279500  Time 0.58357
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/model_280000.npy
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/model_fine_280000.npy
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/optimizer_280000.npy
+test poses shape (5, 4, 4)
+render time img 0: 1.0251998901367188e-05  RGB and Disp Map Shape: (256, 256, 3) (256, 256)
+  test img 0 PSNR: 32.101590633392334
+render time img 1: 3.240783929824829  test img 1 PSNR: 31.031837463378906
+render time img 2: 3.2108347415924072  test img 2 PSNR: 33.14040660858154
+render time img 3: 3.19809889793396  test img 3 PSNR: 33.66426944732666
+render time img 4: 3.2047855854034424  test img 4 PSNR: 31.47031545639038
+Saved test set
+[TRAIN] Iter: 280000 Loss: 0.0016531096771359444  PSNR: 32.8219108581543  Global Step: 280000  Time 0.58827
+[TRAIN] Iter: 280500 Loss: 0.002132813911885023  PSNR: 31.61060905456543  Global Step: 280500  Time 0.58548
+[TRAIN] Iter: 281000 Loss: 0.002022039145231247  PSNR: 31.557159423828125  Global Step: 281000  Time 0.57918
+[TRAIN] Iter: 281500 Loss: 0.0013904739171266556  PSNR: 33.71644973754883  Global Step: 281500  Time 0.58510
+[TRAIN] Iter: 282000 Loss: 0.002081120852380991  PSNR: 32.1453971862793  Global Step: 282000  Time 0.58669
+[TRAIN] Iter: 282500 Loss: 0.00156953907571733  PSNR: 32.81953048706055  Global Step: 282500  Time 0.54081
+[TRAIN] Iter: 283000 Loss: 0.001104465452954173  PSNR: 34.43509292602539  Global Step: 283000  Time 0.58704
+[TRAIN] Iter: 283500 Loss: 0.002551965182647109  PSNR: 31.027416229248047  Global Step: 283500  Time 0.58710
+[TRAIN] Iter: 284000 Loss: 0.0021758279763162136  PSNR: 31.786392211914062  Global Step: 284000  Time 0.58545
+[TRAIN] Iter: 284500 Loss: 0.0027098427526652813  PSNR: 31.122133255004883  Global Step: 284500  Time 0.58513
+[TRAIN] Iter: 285000 Loss: 0.002283265348523855  PSNR: 31.168865203857422  Global Step: 285000  Time 0.57753
+[TRAIN] Iter: 285500 Loss: 0.001557162031531334  PSNR: 33.31904220581055  Global Step: 285500  Time 0.57458
+[TRAIN] Iter: 286000 Loss: 0.0017158088739961386  PSNR: 32.8249397277832  Global Step: 286000  Time 0.57970
+[TRAIN] Iter: 286500 Loss: 0.0020095440559089184  PSNR: 31.8252010345459  Global Step: 286500  Time 0.58501
+[TRAIN] Iter: 287000 Loss: 0.0014259361196309328  PSNR: 33.17146682739258  Global Step: 287000  Time 0.58685
+[TRAIN] Iter: 287500 Loss: 0.0016583242686465383  PSNR: 32.73741149902344  Global Step: 287500  Time 0.58752
+[TRAIN] Iter: 288000 Loss: 0.0018108559306710958  PSNR: 32.1635627746582  Global Step: 288000  Time 0.58801
+[TRAIN] Iter: 288500 Loss: 0.001346435397863388  PSNR: 33.445098876953125  Global Step: 288500  Time 0.58495
+[TRAIN] Iter: 289000 Loss: 0.0018673622980713844  PSNR: 32.086212158203125  Global Step: 289000  Time 0.56654
+[TRAIN] Iter: 289500 Loss: 0.0017940476536750793  PSNR: 32.5482063293457  Global Step: 289500  Time 0.57826
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/model_290000.npy
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/model_fine_290000.npy
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/optimizer_290000.npy
+test poses shape (5, 4, 4)
+render time img 0: 5.9604644775390625e-06  RGB and Disp Map Shape: (256, 256, 3) (256, 256)
+  test img 0 PSNR: 32.03103065490723
+render time img 1: 3.2109837532043457  test img 1 PSNR: 30.81888198852539
+render time img 2: 3.191243886947632  test img 2 PSNR: 33.227806091308594
+render time img 3: 3.1957967281341553  test img 3 PSNR: 33.505210876464844
+render time img 4: 3.1387228965759277  test img 4 PSNR: 31.5722918510437
+Saved test set
+[TRAIN] Iter: 290000 Loss: 0.0018564783968031406  PSNR: 31.778121948242188  Global Step: 290000  Time 0.58590
+[TRAIN] Iter: 290500 Loss: 0.0015745405107736588  PSNR: 33.01070785522461  Global Step: 290500  Time 0.56174
+[TRAIN] Iter: 291000 Loss: 0.002261809539049864  PSNR: 31.160720825195312  Global Step: 291000  Time 0.58413
+[TRAIN] Iter: 291500 Loss: 0.0021495232358574867  PSNR: 31.83139991760254  Global Step: 291500  Time 0.57950
+[TRAIN] Iter: 292000 Loss: 0.0021101632155478  PSNR: 31.99066925048828  Global Step: 292000  Time 0.58701
+[TRAIN] Iter: 292500 Loss: 0.0016197643708437681  PSNR: 32.42947006225586  Global Step: 292500  Time 0.58323
+[TRAIN] Iter: 293000 Loss: 0.0013552727177739143  PSNR: 34.04212951660156  Global Step: 293000  Time 0.58888
+[TRAIN] Iter: 293500 Loss: 0.0014893655898049474  PSNR: 33.187191009521484  Global Step: 293500  Time 0.53561
+[TRAIN] Iter: 294000 Loss: 0.0020312832202762365  PSNR: 31.82455825805664  Global Step: 294000  Time 0.53279
+[TRAIN] Iter: 294500 Loss: 0.00183157529681921  PSNR: 32.32242202758789  Global Step: 294500  Time 0.58546
+[TRAIN] Iter: 295000 Loss: 0.0015929949004203081  PSNR: 32.781471252441406  Global Step: 295000  Time 0.58796
+[TRAIN] Iter: 295500 Loss: 0.0023078271187841892  PSNR: 31.740650177001953  Global Step: 295500  Time 0.58256
+[TRAIN] Iter: 296000 Loss: 0.0017235800623893738  PSNR: 32.722373962402344  Global Step: 296000  Time 0.57861
+[TRAIN] Iter: 296500 Loss: 0.0012796120718121529  PSNR: 33.891998291015625  Global Step: 296500  Time 0.58063
+[TRAIN] Iter: 297000 Loss: 0.0014182021841406822  PSNR: 32.84550094604492  Global Step: 297000  Time 0.58395
+[TRAIN] Iter: 297500 Loss: 0.0016953805461525917  PSNR: 32.252967834472656  Global Step: 297500  Time 0.55547
+[TRAIN] Iter: 298000 Loss: 0.0017948640743270516  PSNR: 32.52252960205078  Global Step: 298000  Time 0.58589
+[TRAIN] Iter: 298500 Loss: 0.002152738394215703  PSNR: 31.50394058227539  Global Step: 298500  Time 0.58658
+[TRAIN] Iter: 299000 Loss: 0.0017463546246290207  PSNR: 32.56640625  Global Step: 299000  Time 0.58425
+[TRAIN] Iter: 299500 Loss: 0.0019410053500905633  PSNR: 31.94303321838379  Global Step: 299500  Time 0.58507
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/model_300000.npy
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/model_fine_300000.npy
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/optimizer_300000.npy
+test poses shape (5, 4, 4)
+render time img 0: 6.67572021484375e-06  RGB and Disp Map Shape: (256, 256, 3) (256, 256)
+  test img 0 PSNR: 32.18031644821167
+render time img 1: 3.1569502353668213  test img 1 PSNR: 31.10072374343872
+render time img 2: 3.1879961490631104  test img 2 PSNR: 33.20559740066528
+render time img 3: 3.192941427230835  test img 3 PSNR: 33.691534996032715
+render time img 4: 3.196141481399536  test img 4 PSNR: 31.62099599838257
+Saved test set
+[TRAIN] Iter: 300000 Loss: 0.001759309321641922  PSNR: 32.18174362182617  Global Step: 300000  Time 0.58140
+[TRAIN] Iter: 300500 Loss: 0.0012263581156730652  PSNR: 33.672637939453125  Global Step: 300500  Time 0.57728
+[TRAIN] Iter: 301000 Loss: 0.0013198612723499537  PSNR: 33.62566375732422  Global Step: 301000  Time 0.58671
+[TRAIN] Iter: 301500 Loss: 0.0012201194185763597  PSNR: 33.57525634765625  Global Step: 301500  Time 0.56597
+[TRAIN] Iter: 302000 Loss: 0.0018921112641692162  PSNR: 31.816762924194336  Global Step: 302000  Time 0.58760
+[TRAIN] Iter: 302500 Loss: 0.001627607038244605  PSNR: 32.900203704833984  Global Step: 302500  Time 0.58406
+[TRAIN] Iter: 303000 Loss: 0.0018369423924013972  PSNR: 32.734859466552734  Global Step: 303000  Time 0.58722
+[TRAIN] Iter: 303500 Loss: 0.0012468395289033651  PSNR: 33.75960159301758  Global Step: 303500  Time 0.58019
+[TRAIN] Iter: 304000 Loss: 0.0013305809115990996  PSNR: 33.73843765258789  Global Step: 304000  Time 0.58287
+[TRAIN] Iter: 304500 Loss: 0.0021747080609202385  PSNR: 31.53083610534668  Global Step: 304500  Time 0.58383
+[TRAIN] Iter: 305000 Loss: 0.0013841273030266166  PSNR: 33.28171157836914  Global Step: 305000  Time 0.58427
+[TRAIN] Iter: 305500 Loss: 0.0015235560713335872  PSNR: 33.229671478271484  Global Step: 305500  Time 0.58502
+[TRAIN] Iter: 306000 Loss: 0.001541184145025909  PSNR: 33.18083190917969  Global Step: 306000  Time 0.55772
+[TRAIN] Iter: 306500 Loss: 0.001962069422006607  PSNR: 32.04405975341797  Global Step: 306500  Time 0.58681
+[TRAIN] Iter: 307000 Loss: 0.0017378681804984808  PSNR: 32.660648345947266  Global Step: 307000  Time 0.58515
+[TRAIN] Iter: 307500 Loss: 0.0022790299262851477  PSNR: 31.81833839416504  Global Step: 307500  Time 0.58503
+[TRAIN] Iter: 308000 Loss: 0.0015032694209367037  PSNR: 32.976810455322266  Global Step: 308000  Time 0.58407
+[TRAIN] Iter: 308500 Loss: 0.0014713644050061703  PSNR: 33.016326904296875  Global Step: 308500  Time 0.58471
+[TRAIN] Iter: 309000 Loss: 0.0014995438978075981  PSNR: 32.39223861694336  Global Step: 309000  Time 0.58250
+[TRAIN] Iter: 309500 Loss: 0.0020179199054837227  PSNR: 32.00548553466797  Global Step: 309500  Time 0.57735
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/model_310000.npy
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/model_fine_310000.npy
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/optimizer_310000.npy
+test poses shape (5, 4, 4)
+render time img 0: 6.198883056640625e-06  RGB and Disp Map Shape: (256, 256, 3) (256, 256)
+  test img 0 PSNR: 32.098469734191895
+render time img 1: 3.1983859539031982  test img 1 PSNR: 31.19002103805542
+render time img 2: 3.180631160736084  test img 2 PSNR: 33.29524278640747
+render time img 3: 3.1923487186431885  test img 3 PSNR: 33.68319034576416
+render time img 4: 3.181274890899658  test img 4 PSNR: 31.748032569885254
+Saved test set
+[TRAIN] Iter: 310000 Loss: 0.001729903044179082  PSNR: 32.475311279296875  Global Step: 310000  Time 0.58443
+[TRAIN] Iter: 310500 Loss: 0.0016245139995589852  PSNR: 33.17472457885742  Global Step: 310500  Time 0.58235
+[TRAIN] Iter: 311000 Loss: 0.001538911135867238  PSNR: 33.113529205322266  Global Step: 311000  Time 0.58432
+[TRAIN] Iter: 311500 Loss: 0.0014458840014413  PSNR: 33.36214828491211  Global Step: 311500  Time 0.58406
+[TRAIN] Iter: 312000 Loss: 0.0019131816225126386  PSNR: 32.08416748046875  Global Step: 312000  Time 0.58491
+[TRAIN] Iter: 312500 Loss: 0.0017046681605279446  PSNR: 32.40462112426758  Global Step: 312500  Time 0.58030
+[TRAIN] Iter: 313000 Loss: 0.0018840855918824673  PSNR: 32.16594314575195  Global Step: 313000  Time 0.58281
+[TRAIN] Iter: 313500 Loss: 0.0021940460428595543  PSNR: 31.17239761352539  Global Step: 313500  Time 0.58156
+[TRAIN] Iter: 314000 Loss: 0.0011672945693135262  PSNR: 34.69547653198242  Global Step: 314000  Time 0.58633
+[TRAIN] Iter: 314500 Loss: 0.002767669502645731  PSNR: 30.451534271240234  Global Step: 314500  Time 0.58580
+[TRAIN] Iter: 315000 Loss: 0.0012845906894654036  PSNR: 33.96875  Global Step: 315000  Time 0.57577
+[TRAIN] Iter: 315500 Loss: 0.0012402237625792623  PSNR: 33.79709243774414  Global Step: 315500  Time 0.58331
+[TRAIN] Iter: 316000 Loss: 0.0012352000921964645  PSNR: 33.846309661865234  Global Step: 316000  Time 0.58520
+[TRAIN] Iter: 316500 Loss: 0.0012161111226305366  PSNR: 34.12491989135742  Global Step: 316500  Time 0.58551
+[TRAIN] Iter: 317000 Loss: 0.0014550290070474148  PSNR: 33.219932556152344  Global Step: 317000  Time 0.58483
+[TRAIN] Iter: 317500 Loss: 0.0019182038959115744  PSNR: 32.33241271972656  Global Step: 317500  Time 0.53335
+[TRAIN] Iter: 318000 Loss: 0.0012324778363108635  PSNR: 33.85004425048828  Global Step: 318000  Time 0.58402
+[TRAIN] Iter: 318500 Loss: 0.0017868827562779188  PSNR: 32.55830001831055  Global Step: 318500  Time 0.58410
+[TRAIN] Iter: 319000 Loss: 0.0017108088359236717  PSNR: 32.272220611572266  Global Step: 319000  Time 0.57751
+[TRAIN] Iter: 319500 Loss: 0.002269043354317546  PSNR: 31.619976043701172  Global Step: 319500  Time 0.58738
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/model_320000.npy
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/model_fine_320000.npy
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/optimizer_320000.npy
+test poses shape (5, 4, 4)
+render time img 0: 6.198883056640625e-06  RGB and Disp Map Shape: (256, 256, 3) (256, 256)
+  test img 0 PSNR: 32.330849170684814
+render time img 1: 3.082548141479492  test img 1 PSNR: 31.12030029296875
+render time img 2: 3.1997594833374023  test img 2 PSNR: 33.05379390716553
+render time img 3: 3.2007930278778076  test img 3 PSNR: 33.55968236923218
+render time img 4: 3.2062876224517822  test img 4 PSNR: 31.678977012634277
+Saved test set
+[TRAIN] Iter: 320000 Loss: 0.002218169393017888  PSNR: 31.721229553222656  Global Step: 320000  Time 0.58664
+[TRAIN] Iter: 320500 Loss: 0.0019605604466050863  PSNR: 32.4567756652832  Global Step: 320500  Time 0.58255
+[TRAIN] Iter: 321000 Loss: 0.0013642520643770695  PSNR: 33.47209930419922  Global Step: 321000  Time 0.58153
+[TRAIN] Iter: 321500 Loss: 0.0020976599771529436  PSNR: 31.884967803955078  Global Step: 321500  Time 0.58293
+[TRAIN] Iter: 322000 Loss: 0.0018298458307981491  PSNR: 32.44169998168945  Global Step: 322000  Time 0.58600
+[TRAIN] Iter: 322500 Loss: 0.0015535126440227032  PSNR: 33.04536056518555  Global Step: 322500  Time 0.58344
+[TRAIN] Iter: 323000 Loss: 0.0020199930295348167  PSNR: 31.825695037841797  Global Step: 323000  Time 0.58306
+[TRAIN] Iter: 323500 Loss: 0.0021065371111035347  PSNR: 31.68470001220703  Global Step: 323500  Time 0.58507
+[TRAIN] Iter: 324000 Loss: 0.001613193890079856  PSNR: 32.76436233520508  Global Step: 324000  Time 0.58254
+[TRAIN] Iter: 324500 Loss: 0.001629566540941596  PSNR: 32.62526321411133  Global Step: 324500  Time 0.58179
+[TRAIN] Iter: 325000 Loss: 0.0017996423412114382  PSNR: 32.36279296875  Global Step: 325000  Time 0.58237
+[TRAIN] Iter: 325500 Loss: 0.0014619474532082677  PSNR: 32.845157623291016  Global Step: 325500  Time 0.58219
+[TRAIN] Iter: 326000 Loss: 0.0012877583503723145  PSNR: 33.99100112915039  Global Step: 326000  Time 0.58537
+[TRAIN] Iter: 326500 Loss: 0.0014454165939241648  PSNR: 33.787376403808594  Global Step: 326500  Time 0.58452
+[TRAIN] Iter: 327000 Loss: 0.0022213771007955074  PSNR: 31.86675453186035  Global Step: 327000  Time 0.58207
+[TRAIN] Iter: 327500 Loss: 0.0016639926470816135  PSNR: 32.44108200073242  Global Step: 327500  Time 0.58315
+[TRAIN] Iter: 328000 Loss: 0.0018375269137322903  PSNR: 32.03865051269531  Global Step: 328000  Time 0.58307
+[TRAIN] Iter: 328500 Loss: 0.001111940131522715  PSNR: 34.004638671875  Global Step: 328500  Time 0.58596
+[TRAIN] Iter: 329000 Loss: 0.0017124414443969727  PSNR: 32.674560546875  Global Step: 329000  Time 0.58139
+[TRAIN] Iter: 329500 Loss: 0.0011153433006256819  PSNR: 34.37111282348633  Global Step: 329500  Time 0.58341
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/model_330000.npy
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/model_fine_330000.npy
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/optimizer_330000.npy
+test poses shape (5, 4, 4)
+render time img 0: 5.9604644775390625e-06  RGB and Disp Map Shape: (256, 256, 3) (256, 256)
+  test img 0 PSNR: 32.290706634521484
+render time img 1: 3.1628432273864746  test img 1 PSNR: 31.078271865844727
+render time img 2: 3.1972806453704834  test img 2 PSNR: 33.28613519668579
+render time img 3: 3.2109615802764893  test img 3 PSNR: 33.79291534423828
+render time img 4: 3.195747137069702  test img 4 PSNR: 31.8070125579834
+Saved test set
+[TRAIN] Iter: 330000 Loss: 0.0021014069207012653  PSNR: 31.893556594848633  Global Step: 330000  Time 0.58487
+[TRAIN] Iter: 330500 Loss: 0.0015272253658622503  PSNR: 33.20390701293945  Global Step: 330500  Time 0.58604
+[TRAIN] Iter: 331000 Loss: 0.0018143013585358858  PSNR: 32.32270050048828  Global Step: 331000  Time 0.58635
+[TRAIN] Iter: 331500 Loss: 0.002066173357889056  PSNR: 32.14748001098633  Global Step: 331500  Time 0.58533
+[TRAIN] Iter: 332000 Loss: 0.0015948929358273745  PSNR: 32.98091125488281  Global Step: 332000  Time 0.58491
+[TRAIN] Iter: 332500 Loss: 0.0011726627126336098  PSNR: 34.172027587890625  Global Step: 332500  Time 0.58215
+[TRAIN] Iter: 333000 Loss: 0.001306408317759633  PSNR: 33.96184158325195  Global Step: 333000  Time 0.58602
+[TRAIN] Iter: 333500 Loss: 0.0011588579509407282  PSNR: 34.6008415222168  Global Step: 333500  Time 0.58292
+[TRAIN] Iter: 334000 Loss: 0.0014897831715643406  PSNR: 33.116973876953125  Global Step: 334000  Time 0.58347
+[TRAIN] Iter: 334500 Loss: 0.0014225085033103824  PSNR: 33.66706466674805  Global Step: 334500  Time 0.58336
+[TRAIN] Iter: 335000 Loss: 0.0021718440111726522  PSNR: 31.98068618774414  Global Step: 335000  Time 0.58361
+[TRAIN] Iter: 335500 Loss: 0.0015325413551181555  PSNR: 33.05156326293945  Global Step: 335500  Time 0.58210
+[TRAIN] Iter: 336000 Loss: 0.0019641080871224403  PSNR: 32.2161979675293  Global Step: 336000  Time 0.56495
+[TRAIN] Iter: 336500 Loss: 0.0020835003815591335  PSNR: 32.3306770324707  Global Step: 336500  Time 0.58323
+[TRAIN] Iter: 337000 Loss: 0.0017129050102084875  PSNR: 32.743072509765625  Global Step: 337000  Time 0.58591
+[TRAIN] Iter: 337500 Loss: 0.001653172541409731  PSNR: 33.1013069152832  Global Step: 337500  Time 0.58474
+[TRAIN] Iter: 338000 Loss: 0.001462303102016449  PSNR: 33.08028030395508  Global Step: 338000  Time 0.57638
+[TRAIN] Iter: 338500 Loss: 0.0018427734030410647  PSNR: 32.13384246826172  Global Step: 338500  Time 0.58092
+[TRAIN] Iter: 339000 Loss: 0.001711014425382018  PSNR: 33.054588317871094  Global Step: 339000  Time 0.58388
+[TRAIN] Iter: 339500 Loss: 0.0016141397645696998  PSNR: 32.566951751708984  Global Step: 339500  Time 0.57905
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/model_340000.npy
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/model_fine_340000.npy
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/optimizer_340000.npy
+test poses shape (5, 4, 4)
+render time img 0: 6.198883056640625e-06  RGB and Disp Map Shape: (256, 256, 3) (256, 256)
+  test img 0 PSNR: 32.37865447998047
+render time img 1: 3.2482872009277344  test img 1 PSNR: 31.12757444381714
+render time img 2: 3.2043280601501465  test img 2 PSNR: 33.38409900665283
+render time img 3: 3.212895154953003  test img 3 PSNR: 33.73944282531738
+render time img 4: 3.193469762802124  test img 4 PSNR: 31.803929805755615
+Saved test set
+[TRAIN] Iter: 340000 Loss: 0.0019266167655587196  PSNR: 32.06336212158203  Global Step: 340000  Time 0.58499
+[TRAIN] Iter: 340500 Loss: 0.0015637930482625961  PSNR: 32.913818359375  Global Step: 340500  Time 0.58484
+[TRAIN] Iter: 341000 Loss: 0.00224064732901752  PSNR: 32.053348541259766  Global Step: 341000  Time 0.58312
+[TRAIN] Iter: 341500 Loss: 0.001636394066736102  PSNR: 33.038604736328125  Global Step: 341500  Time 0.55772
+[TRAIN] Iter: 342000 Loss: 0.002023296430706978  PSNR: 32.172691345214844  Global Step: 342000  Time 0.58342
+[TRAIN] Iter: 342500 Loss: 0.000942353974096477  PSNR: 34.937286376953125  Global Step: 342500  Time 0.56875
+[TRAIN] Iter: 343000 Loss: 0.0012393957003951073  PSNR: 33.830047607421875  Global Step: 343000  Time 0.58413
+[TRAIN] Iter: 343500 Loss: 0.0013192753540351987  PSNR: 33.916751861572266  Global Step: 343500  Time 0.58425
+[TRAIN] Iter: 344000 Loss: 0.001854265108704567  PSNR: 32.625244140625  Global Step: 344000  Time 0.58228
+[TRAIN] Iter: 344500 Loss: 0.0017690652748569846  PSNR: 32.976959228515625  Global Step: 344500  Time 0.57992
+[TRAIN] Iter: 345000 Loss: 0.0009634025627747178  PSNR: 35.00386047363281  Global Step: 345000  Time 0.58179
+[TRAIN] Iter: 345500 Loss: 0.0020386644173413515  PSNR: 32.00304412841797  Global Step: 345500  Time 0.58388
+[TRAIN] Iter: 346000 Loss: 0.0017672738758847117  PSNR: 32.750911712646484  Global Step: 346000  Time 0.58578
+[TRAIN] Iter: 346500 Loss: 0.0015452697407454252  PSNR: 33.017765045166016  Global Step: 346500  Time 0.58167
+[TRAIN] Iter: 347000 Loss: 0.0016010315157473087  PSNR: 33.565738677978516  Global Step: 347000  Time 0.58580
+[TRAIN] Iter: 347500 Loss: 0.00149376573972404  PSNR: 33.406341552734375  Global Step: 347500  Time 0.58191
+[TRAIN] Iter: 348000 Loss: 0.001450875774025917  PSNR: 33.78361892700195  Global Step: 348000  Time 0.58583
+[TRAIN] Iter: 348500 Loss: 0.001757835503667593  PSNR: 32.643348693847656  Global Step: 348500  Time 0.58276
+[TRAIN] Iter: 349000 Loss: 0.0016016879817470908  PSNR: 33.232460021972656  Global Step: 349000  Time 0.58349
+[TRAIN] Iter: 349500 Loss: 0.0011633106041699648  PSNR: 34.74020004272461  Global Step: 349500  Time 0.58192
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/model_350000.npy
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/model_fine_350000.npy
+saved weights at ./log/nyx256_200_global_clip_diag_divfocal/optimizer_350000.npy
+test poses shape (5, 4, 4)
+render time img 0: 6.198883056640625e-06  RGB and Disp Map Shape: (256, 256, 3) (256, 256)
+  test img 0 PSNR: 32.43616342544556
+render time img 1: 3.2054288387298584  test img 1 PSNR: 31.16142749786377
+render time img 2: 3.181373357772827  test img 2 PSNR: 33.42019557952881
+render time img 3: 3.1891229152679443  test img 3 PSNR: 33.78230333328247
+render time img 4: 3.1793673038482666  test img 4 PSNR: 31.788382530212402
+Saved test set
+[TRAIN] Iter: 350000 Loss: 0.001806848682463169  PSNR: 32.64405059814453  Global Step: 350000  Time 0.58553
+[TRAIN] Iter: 350500 Loss: 0.0014302799245342612  PSNR: 33.27118682861328  Global Step: 350500  Time 0.58333
+[TRAIN] Iter: 351000 Loss: 0.0018205889500677586  PSNR: 32.479774475097656  Global Step: 351000  Time 0.58450
+[TRAIN] Iter: 351500 Loss: 0.0019469500984996557  PSNR: 31.913013458251953  Global Step: 351500  Time 0.58562
+[TRAIN] Iter: 352000 Loss: 0.001365292351692915  PSNR: 33.592891693115234  Global Step: 352000  Time 0.58501
+[TRAIN] Iter: 352500 Loss: 0.0015797661617398262  PSNR: 33.253326416015625  Global Step: 352500  Time 0.58516
+[TRAIN] Iter: 353000 Loss: 0.0020160230342298746  PSNR: 32.14249801635742  Global Step: 353000  Time 0.58516
+[TRAIN] Iter: 353500 Loss: 0.001463523367419839  PSNR: 33.1875  Global Step: 353500  Time 0.58573
+[TRAIN] Iter: 354000 Loss: 0.001599347684532404  PSNR: 33.003456115722656  Global Step: 354000  Time 0.58420
+[TRAIN] Iter: 354500 Loss: 0.0012097073486074805  PSNR: 34.146209716796875  Global Step: 354500  Time 0.58568
+[TRAIN] Iter: 355000 Loss: 0.0012590864207595587  PSNR: 33.77727508544922  Global Step: 355000  Time 0.58177
+[TRAIN] Iter: 355500 Loss: 0.0014516821829602122  PSNR: 33.19384765625  Global Step: 355500  Time 0.58685
+[TRAIN] Iter: 356000 Loss: 0.0017248537624254823  PSNR: 32.487056732177734  Global Step: 356000  Time 0.58339
+[TRAIN] Iter: 356500 Loss: 0.0016994678881019354  PSNR: 32.78032684326172  Global Step: 356500  Time 0.58387
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** JOB 11399929 ON p0239 CANCELLED AT 2022-05-30T22:50:17 DUE TO TIME LIMIT ***
+slurmstepd: error: *** STEP 11399929.0 ON p0239 CANCELLED AT 2022-05-30T22:50:17 DUE TO TIME LIMIT ***

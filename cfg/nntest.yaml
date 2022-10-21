@@ -1,0 +1,13 @@
+model_path: 'log/coord_mlp/ckpt_099_17699_8.06e-06'
+
+out_dir: 'eval/data'
+vis_out_dir: 'eval/data'
+
+out_name: 'nopole'
+
+# pathline ploting config
+# num_pl: 16
+# num_pl_plot: 8
+# pl_time_step: 500
+
+# vtu_dir: 'vis/data/fold_attr_loss2'

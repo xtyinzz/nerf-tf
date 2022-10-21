@@ -8,10 +8,13 @@ import imageio
 import json
 import random
 import time
+import signal
 from run_nerf_helpers import *
 from load_llff import load_llff_data
 from load_deepvoxels import load_dv_data
 from load_blender import load_blender_data
+from data.load_nyx import load_nyx_data
+from data.load_comb import load_comb_data
 
 
 tf.compat.v1.enable_eager_execution()
@@ -351,18 +354,20 @@ def render_path(render_poses, hwf, chunk, render_kwargs, gt_imgs=None, savedir=N
 
     t = time.time()
     for i, c2w in enumerate(render_poses):
-        print(i, time.time() - t)
+        print(f"render time img {i}:", time.time() - t, end="")
         t = time.time()
         rgb, disp, acc, _ = render(
             H, W, focal, chunk=chunk, c2w=c2w[:3, :4], **render_kwargs)
         rgbs.append(rgb.numpy())
         disps.append(disp.numpy())
         if i == 0:
-            print(rgb.shape, disp.shape)
+            print("  RGB and Disp Map Shape:", rgb.shape, disp.shape)
 
         if gt_imgs is not None and render_factor == 0:
             p = -10. * np.log10(np.mean(np.square(rgb - gt_imgs[i])))
-            print(p)
+            print(f"  test img {i} PSNR: {p}")
+        else:
+            print()
 
         if savedir is not None:
             rgb8 = to8b(rgbs[-1])
@@ -462,13 +467,13 @@ def config_parser():
 
     import configargparse
     parser = configargparse.ArgumentParser()
-    parser.add_argument('--config', is_config_file=True,
+    parser.add_argument('--config', is_config_file=True, default='cfg/nyx.yaml',
                         help='config file path')
-    parser.add_argument("--expname", type=str, help='experiment name')
-    parser.add_argument("--basedir", type=str, default='./logs/',
+    parser.add_argument("--expname", type=str, help='nyx200')
+    parser.add_argument("--basedir", type=str, default='./log/',
                         help='where to store ckpts and logs')
     parser.add_argument("--datadir", type=str,
-                        default='./data/llff/fern', help='input data directory')
+                        default='./data/nyx', help='input data directory')
 
     # training options
     parser.add_argument("--netdepth", type=int, default=8,
@@ -528,12 +533,13 @@ def config_parser():
                         help='render the test set instead of render_poses path')
     parser.add_argument("--render_factor", type=int, default=0,
                         help='downsampling factor to speed up rendering, set 4 or 8 for fast preview')
-
+    parser.add_argument("--test_split", type=float, default=0.05,
+                        help='propotion of testind data')
+                        
     # dataset options
     parser.add_argument("--dataset_type", type=str, default='llff',
                         help='options: llff / blender / deepvoxels')
-    parser.add_argument("--testskip", type=int, default=8,
-                        help='will load 1/N images from test/val sets, useful for large datasets like deepvoxels')
+
 
     # deepvoxels flags
     parser.add_argument("--shape", type=str, default='greek',
@@ -574,6 +580,16 @@ def config_parser():
 
 def train():
 
+
+    def handler(signum, frame):
+      print('\n\n****** TIME LIMIT APPROACHING, saving model.... ******', signum)
+      for k in models:
+        save_weights(models[k], k, i)
+    # enable the handler
+    signal.signal(signal.SIGUSR1, handler)
+
+
+
     parser = config_parser()
     args = parser.parse_args()
     
@@ -584,63 +600,35 @@ def train():
 
     # Load data
 
-    if args.dataset_type == 'llff':
-        images, poses, bds, render_poses, i_test = load_llff_data(args.datadir, args.factor,
-                                                                  recenter=True, bd_factor=.75,
-                                                                  spherify=args.spherify)
-        hwf = poses[0, :3, -1]
-        poses = poses[:, :3, :4]
-        print('Loaded llff', images.shape,
-              render_poses.shape, hwf, args.datadir)
-        if not isinstance(i_test, list):
-            i_test = [i_test]
+    if args.dataset_type == 'nyx':
+      images, poses, hw, nearFar, bbox, iSplit, render_poses = load_nyx_data(
+        args.datadir, testSplit=args.test_split
+      )
+      # nears, fars = nearFar[:,0], nearFar[:,1]
+      near, far = np.mean(nearFar, 0) / 255 * 2 - 1
+      # near = float(near)
+      # far = float(far)
+      focal = hw[0] / np.tan(np.deg2rad(30/2))
+      hwf = [*hw, focal]
 
-        if args.llffhold > 0:
-            print('Auto LLFF holdout,', args.llffhold)
-            i_test = np.arange(images.shape[0])[::args.llffhold]
+      i_train, i_val, i_test = iSplit
+      i_test = i_val
+    #   bbox = torch.Tensor(bbox)
+    elif args.dataset_type == 'combustion':
+      images, poses, hw, nearFar, bbox, iSplit = load_comb_data(
+        args.datadir, testSplit=args.test_split
+      )
+      # nears, fars = nearFar[:,0], nearFar[:,1]
+      near, far = np.mean(nearFar, 0) / 255 * 2 - 1
+      # near = float(near)
+      # far = float(far)
+      focal = hw[0] / np.tan(np.deg2rad(30/2))
+      hwf = [*hw, focal]
 
-        i_val = i_test
-        i_train = np.array([i for i in np.arange(int(images.shape[0])) if
-                            (i not in i_test and i not in i_val)])
-
-        print('DEFINING BOUNDS')
-        if args.no_ndc:
-            near = tf.reduce_min(bds) * .9
-            far = tf.reduce_max(bds) * 1.
-        else:
-            near = 0.
-            far = 1.
-        print('NEAR FAR', near, far)
-
-    elif args.dataset_type == 'blender':
-        images, poses, render_poses, hwf, i_split = load_blender_data(
-            args.datadir, args.half_res, args.testskip)
-        print('Loaded blender', images.shape,
-              render_poses.shape, hwf, args.datadir)
-        i_train, i_val, i_test = i_split
-
-        near = 2.
-        far = 6.
-
-        if args.white_bkgd:
-            images = images[..., :3]*images[..., -1:] + (1.-images[..., -1:])
-        else:
-            images = images[..., :3]
-
-    elif args.dataset_type == 'deepvoxels':
-
-        images, poses, render_poses, hwf, i_split = load_dv_data(scene=args.shape,
-                                                                 basedir=args.datadir,
-                                                                 testskip=args.testskip)
-
-        print('Loaded deepvoxels', images.shape,
-              render_poses.shape, hwf, args.datadir)
-        i_train, i_val, i_test = i_split
-
-        hemi_R = np.mean(np.linalg.norm(poses[:, :3, -1], axis=-1))
-        near = hemi_R-1.
-        far = hemi_R+1.
-
+      i_train, i_val, i_test = iSplit
+      i_test = i_val
+    #   bbox = torch.Tensor(bbox)
+    
     else:
         print('Unknown dataset type', args.dataset_type, 'exiting')
         return
@@ -649,7 +637,8 @@ def train():
     H, W, focal = hwf
     H, W = int(H), int(W)
     hwf = [H, W, focal]
-
+    print("hwf:", hwf, "near far:", near, far)
+    
     if args.render_test:
         render_poses = np.array(poses[i_test])
 
@@ -842,25 +831,25 @@ def train():
             for k in models:
                 save_weights(models[k], k, i)
 
-        if i % args.i_video == 0 and i > 0:
+        # if i % args.i_video == 0 and i > 0:
 
-            rgbs, disps = render_path(
-                render_poses, hwf, args.chunk, render_kwargs_test)
-            print('Done, saving', rgbs.shape, disps.shape)
-            moviebase = os.path.join(
-                basedir, expname, '{}_spiral_{:06d}_'.format(expname, i))
-            imageio.mimwrite(moviebase + 'rgb.mp4',
-                             to8b(rgbs), fps=30, quality=8)
-            imageio.mimwrite(moviebase + 'disp.mp4',
-                             to8b(disps / np.max(disps)), fps=30, quality=8)
+        #     rgbs, disps = render_path(
+        #         render_poses, hwf, args.chunk, render_kwargs_test)
+        #     print('Done, saving', rgbs.shape, disps.shape)
+        #     moviebase = os.path.join(
+        #         basedir, expname, '{}_spiral_{:06d}_'.format(expname, i))
+        #     imageio.mimwrite(moviebase + 'rgb.mp4',
+        #                      to8b(rgbs), fps=30, quality=8)
+        #     imageio.mimwrite(moviebase + 'disp.mp4',
+        #                      to8b(disps / np.max(disps)), fps=30, quality=8)
 
-            if args.use_viewdirs:
-                render_kwargs_test['c2w_staticcam'] = render_poses[0][:3, :4]
-                rgbs_still, _ = render_path(
-                    render_poses, hwf, args.chunk, render_kwargs_test)
-                render_kwargs_test['c2w_staticcam'] = None
-                imageio.mimwrite(moviebase + 'rgb_still.mp4',
-                                 to8b(rgbs_still), fps=30, quality=8)
+        #     if args.use_viewdirs:
+        #         render_kwargs_test['c2w_staticcam'] = render_poses[0][:3, :4]
+        #         rgbs_still, _ = render_path(
+        #             render_poses, hwf, args.chunk, render_kwargs_test)
+        #         render_kwargs_test['c2w_staticcam'] = None
+        #         imageio.mimwrite(moviebase + 'rgb_still.mp4',
+        #                          to8b(rgbs_still), fps=30, quality=8)
 
         if i % args.i_testset == 0 and i > 0:
             testsavedir = os.path.join(
@@ -873,53 +862,55 @@ def train():
 
         if i % args.i_print == 0 or i < 10:
 
-            print(expname, i, psnr.numpy(), loss.numpy(), global_step.numpy())
-            print('iter time {:.05f}'.format(dt))
-            with tf.contrib.summary.record_summaries_every_n_global_steps(args.i_print):
-                tf.contrib.summary.scalar('loss', loss)
-                tf.contrib.summary.scalar('psnr', psnr)
-                tf.contrib.summary.histogram('tran', trans)
-                if args.N_importance > 0:
-                    tf.contrib.summary.scalar('psnr0', psnr0)
+            print(f"[TRAIN] Iter: {i} Loss: {loss.numpy()}",
+                  f" PSNR: {psnr.numpy()}  Global Step: {global_step.numpy()}",
+                  " Time {:.05f}".format(dt))
+            sys.stdout.flush()
+            # with tf.contrib.summary.record_summaries_every_n_global_steps(args.i_print):
+            #     tf.contrib.summary.scalar('loss', loss)
+            #     tf.contrib.summary.scalar('psnr', psnr)
+            #     tf.contrib.summary.histogram('tran', trans)
+            #     if args.N_importance > 0:
+            #         tf.contrib.summary.scalar('psnr0', psnr0)
 
-            if i % args.i_img == 0:
+            # if i % args.i_img == 0:
 
-                # Log a rendered validation view to Tensorboard
-                img_i = np.random.choice(i_val)
-                target = images[img_i]
-                pose = poses[img_i, :3, :4]
+            #     # Log a rendered validation view to Tensorboard
+            #     img_i = np.random.choice(i_val)
+            #     target = images[img_i]
+            #     pose = poses[img_i, :3, :4]
 
-                rgb, disp, acc, extras = render(H, W, focal, chunk=args.chunk, c2w=pose,
-                                                **render_kwargs_test)
+            #     rgb, disp, acc, extras = render(H, W, focal, chunk=args.chunk, c2w=pose,
+            #                                     **render_kwargs_test)
 
-                psnr = mse2psnr(img2mse(rgb, target))
+            #     psnr = mse2psnr(img2mse(rgb, target))
                 
-                # Save out the validation image for Tensorboard-free monitoring
-                testimgdir = os.path.join(basedir, expname, 'tboard_val_imgs')
-                if i==0:
-                    os.makedirs(testimgdir, exist_ok=True)
-                imageio.imwrite(os.path.join(testimgdir, '{:06d}.png'.format(i)), to8b(rgb))
+            #     # Save out the validation image for Tensorboard-free monitoring
+            #     testimgdir = os.path.join(basedir, expname, 'tboard_val_imgs')
+            #     if i==0:
+            #         os.makedirs(testimgdir, exist_ok=True)
+            #     imageio.imwrite(os.path.join(testimgdir, '{:06d}.png'.format(i)), to8b(rgb))
 
-                with tf.contrib.summary.record_summaries_every_n_global_steps(args.i_img):
+            #     with tf.contrib.summary.record_summaries_every_n_global_steps(args.i_img):
 
-                    tf.contrib.summary.image('rgb', to8b(rgb)[tf.newaxis])
-                    tf.contrib.summary.image(
-                        'disp', disp[tf.newaxis, ..., tf.newaxis])
-                    tf.contrib.summary.image(
-                        'acc', acc[tf.newaxis, ..., tf.newaxis])
+            #         tf.contrib.summary.image('rgb', to8b(rgb)[tf.newaxis])
+            #         tf.contrib.summary.image(
+            #             'disp', disp[tf.newaxis, ..., tf.newaxis])
+            #         tf.contrib.summary.image(
+            #             'acc', acc[tf.newaxis, ..., tf.newaxis])
 
-                    tf.contrib.summary.scalar('psnr_holdout', psnr)
-                    tf.contrib.summary.image('rgb_holdout', target[tf.newaxis])
+            #         tf.contrib.summary.scalar('psnr_holdout', psnr)
+            #         tf.contrib.summary.image('rgb_holdout', target[tf.newaxis])
 
-                if args.N_importance > 0:
+            #     if args.N_importance > 0:
 
-                    with tf.contrib.summary.record_summaries_every_n_global_steps(args.i_img):
-                        tf.contrib.summary.image(
-                            'rgb0', to8b(extras['rgb0'])[tf.newaxis])
-                        tf.contrib.summary.image(
-                            'disp0', extras['disp0'][tf.newaxis, ..., tf.newaxis])
-                        tf.contrib.summary.image(
-                            'z_std', extras['z_std'][tf.newaxis, ..., tf.newaxis])
+            #         with tf.contrib.summary.record_summaries_every_n_global_steps(args.i_img):
+            #             tf.contrib.summary.image(
+            #                 'rgb0', to8b(extras['rgb0'])[tf.newaxis])
+            #             tf.contrib.summary.image(
+            #                 'disp0', extras['disp0'][tf.newaxis, ..., tf.newaxis])
+            #             tf.contrib.summary.image(
+            #                 'z_std', extras['z_std'][tf.newaxis, ..., tf.newaxis])
 
         global_step.assign_add(1)
 

@@ -1,0 +1,66 @@
+optim: {
+  type: 'AdamW',
+  param: {
+    lr: 0.001
+  }
+}
+
+scheduler: {
+
+}
+
+model: {
+  type: 'mlp_pe',
+  param: {
+    in_dim: 3,
+    hidden_dims: [64, 128, 256, 128, 64],
+    out_dim: 3,
+    pe_dim: 32,
+  },
+  log_dir: 'log/coord_mlp',
+}
+
+# VBH Grid.npy features:
+# 0, 1, 2,  3,  4,  5,  6,    7,     8
+# x, y, z, X1, X2, X3, Ye, TEMP, PRESS
+# xyz: sperical alike
+# x1x2x3: regular grid alike
+
+dataset: {
+  type: 'mantle_coord',
+  param: {
+    data_path: "data/earth_nopole.npy",
+    curv_idx: [0,1,2],
+    cart_idx: [3,4,5],
+  },
+  train_split: 0.8,
+  valid_split: 0.2,
+}
+
+# dataloader: {
+#   batch: 1048576,
+# }
+
+# reference batch numbers
+# 2^16: 65536
+# 2^17: 131072
+# 2^18: 262144
+# 2^19: 524288
+# 2^20: 1048576
+# 2^21: 2097152
+# 2^22: 4194304
+train: {
+  max_epoch: 100,
+  batch: 524288,
+  # batch_log_step: step between batch number to save model
+  batch_log_step: 50,
+  # log_step: step between epoch number to save model
+  log_step: 1,
+  resume: {
+    ckpt: ckpt_150_0.00,
+  }
+}
+
+logs: {
+  mlp_pe: 'log/coord_mlp',
+}
