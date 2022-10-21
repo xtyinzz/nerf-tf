@@ -6,4 +6,5 @@
 *.npz
 *.dae
 logs/*
-!/data/*.py
+data/*
+!data/*.py
