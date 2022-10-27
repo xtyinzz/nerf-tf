@@ -32,9 +32,10 @@ def batchify(fn, chunk):
 
 def run_network(inputs, viewdirs, fn, embed_fn, embeddirs_fn, netchunk=1024*64):
     """Prepares inputs and applies network 'fn'."""
-
+    
     inputs_flat = tf.reshape(inputs, [-1, inputs.shape[-1]])
-
+    print(inputs_flat.numpy().min(0), inputs_flat.numpy().max(0))
+    
     embedded = embed_fn(inputs_flat)
     if viewdirs is not None:
         input_dirs = tf.broadcast_to(viewdirs[:, None], inputs.shape)

@@ -7,4 +7,5 @@
 *.dae
 logs/*
 data/*
+vols/*
 !data/*.py
