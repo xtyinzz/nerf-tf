@@ -70,12 +70,13 @@ H, W, focal = hwf
 ### Query network on dense 3d grid of points
 N = 256
 t = np.linspace(-1.0, 1.0, N+1)
+descend_t = np.linspace(1.0, -1.0, N+1)
 
-query_pts = np.stack(np.meshgrid(t, t, t, indexing="ij"), -1).astype(np.float32)
+query_pts = np.stack(np.meshgrid(t, descend_t, t, indexing="ij"), -1).astype(np.float32)
 print(query_pts.shape)
 sh = query_pts.shape
 # query_pts = query_pts.transpose(0, 2)
-pts = pts.swapaxes(0, 2)
+query_pts = query_pts.swapaxes(0, 2)
 flat = query_pts.reshape([-1,3])
 
 
@@ -95,7 +96,7 @@ raw = np.reshape(raw, list(sh[:-1]) + [-1])
 sigma = np.maximum(raw[...,-1], 0.)
 
 # np.save("vol/lego.npy", raw)
-raw.tofile("vol/nyx_fine_zyx.raw")
+sigma.tofile("vol/nyx_fine.raw")
 
 print(raw.shape)
 plt.hist(np.maximum(0,sigma.ravel()), log=True)
