@@ -1,7 +1,7 @@
 import vtk
 from vtkmodules.util import numpy_support
 import numpy as np
-from tqdm import tqdm
+# from tqdm import tqdm
 import json
 
 # zero-pad an axis to length
@@ -16,7 +16,7 @@ def get_streamline_data(slPD: vtk.vtkPolyData):
   sls = [0]*slPD.GetNumberOfCells()
   ids = [0]*slPD.GetNumberOfCells()
   sl_lens = np.zeros(slPD.GetNumberOfCells(), dtype=np.int32)
-  for i in tqdm(range(slPD.GetNumberOfCells())):
+  for i in range(slPD.GetNumberOfCells()):
     sl = slPD.GetCell(i)
     points = sl.GetPoints()
     # WHY? ISSUE: if don't do points_np.copy(), then all the streamline will be the same.
@@ -206,6 +206,26 @@ def write_vtr(fpath, vtr):
   writer = vtk.vtkXMLRectilinearGridWriter()
   writer.SetFileName(fpath)
   writer.SetInputData(vtr)
+  writer.Write()
+
+# read a .raw file to vti
+#  bbox: (2, numdim), e.g. [[xmin,ymin], [xmax, ymax]]
+def read_raw_vti(fpath, arr_name, bbox):
+  reader = vtk.vtkImageReader()
+  reader.SetFileName(fpath)
+  reader.SetScalarArrayName(arr_name)
+  reader.SetDataByteOrderToLittleEndian()
+  reader.SetDataScalarTypeToFloat()
+  reader.SetDataExtent(bbox[0][0], bbox[1][0], bbox[0][1], bbox[1][1], bbox[0][2], bbox[1][2])
+  reader.SetFileDimensionality(3)
+  reader.SetDataOrigin(0, 0, 0)
+  reader.SetDataSpacing(1, 1, 1)
+  reader.Update()
+  return reader.GetOutput()
+def write_vti(fpath, vti):
+  writer = vtk.vtkXMLImageDataWriter()
+  writer.SetFileName(fpath)
+  writer.SetInputData(vti)
   writer.Write()
 
 def get_vtp_polyline(sl_coords: np.array, sllens: np.array):

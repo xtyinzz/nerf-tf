@@ -13,20 +13,25 @@ import matplotlib.pyplot as plt
 import run_nerf
 import run_nerf_helpers
 from data.load_nyx import load_nyx_data
-# import vtk
+from data.vis_io import read_raw_vti, write_vti
+import vtk
 
 ### Load trained network weights
 
 basedir = './logs'
-expname = 'nyx_example'
+expname = 'nyx_coldhot'
+ft_str = '' 
+ft_str = '--ft_path {}'.format(os.path.join(basedir, expname, 'model_130000.npy'))
+# output field names
+fpath = "vol/nyx_fine_box_coldhot"
+raw_fpath = fpath + ".raw"
 
 config = os.path.join(basedir, expname, 'config.txt')
 print('Args:')
 print(open(config, 'r').read())
 
 parser = run_nerf.config_parser()
-ft_str = '' 
-ft_str = '--ft_path {}'.format(os.path.join(basedir, expname, 'model_219495.npy'))
+
 args = parser.parse_args('--config {} '.format(config) + ft_str)
 
 # Create nerf model
@@ -68,12 +73,12 @@ H, W, focal = hwf
 
 
 ### Query network on dense 3d grid of points
-N = 256
-dimmax = 0.7
+N = 255
+dimmax = 0.6*(234/255) # visualization found 0.6*234=0.5506 to be the bbox for volume
 t = np.linspace(-dimmax, dimmax, N+1)
 descend_t = np.linspace(dimmax, -dimmax, N+1)
 
-query_pts = np.stack(np.meshgrid(t, descend_t, t, indexing="ij"), -1).astype(np.float32)
+query_pts = np.stack(np.meshgrid(t, t, t, indexing="ij"), -1).astype(np.float32)
 print(query_pts.shape)
 sh = query_pts.shape
 # query_pts = query_pts.transpose(0, 2)
@@ -97,8 +102,25 @@ raw = np.reshape(raw, list(sh[:-1]) + [-1])
 sigma = np.maximum(raw[...,-1], 0.)
 
 # np.save("vol/lego.npy", raw)
-sigma.tofile("vol/nyx_fine_7.raw")
 
-print(raw.shape)
-plt.hist(np.maximum(0,sigma.ravel()), log=True)
-plt.show()
+sigma.tofile(raw_fpath)
+
+bbox = np.array([
+    [0,0,0],
+    [N, N, N]
+], dtype=np.float32)
+
+sigma_vti = read_raw_vti(raw_fpath, "dnerf", bbox)
+write_vti(fpath+".vti", sigma_vti)
+
+# logFilter = vtk.vtkArrayCalculator()
+# logFilter.SetInputData(sigma_vti)
+# logFilter.AddScalarArrayName("dnerf")
+# # logFilter.AddScalarVariable ("d_nerf", "d_nerf")
+# print(logFilter.GetScalarArrayNames())
+# logFilter.SetFunction("log10(dnerf)")
+# logFilter.SetResultArrayName("logdnerf")
+# logFilter.SetResultArrayType(vtk.VTK_FLOAT)
+# logFilter.Update()
+# lodd_sigma_vti = logFilter.GetOutput()
+# write_vti(fpath+".vti", lodd_sigma_vti)

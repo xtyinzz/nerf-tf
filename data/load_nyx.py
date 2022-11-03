@@ -20,15 +20,15 @@ def train_val_indices(dataset_size, valid_split):
 
 def load_nyx_data(fdir, testSplit=0.1):
   nyx = {}
-  renderPoses = {}
   with h5py.File(os.path.join(fdir,"nyx.hdf5"), "r") as f:
     for k,v in f.items():
       nyx[k] = np.array(v)
       
-  with h5py.File(os.path.join(fdir,"poses.hdf5"), "r") as f:
-    for k,v in f.items():
-      print(k,v)
-      renderPoses[k] = np.array(v)
+  # renderPoses = {}
+  # with h5py.File(os.path.join(fdir,"poses.hdf5"), "r") as f:
+  #   for k,v in f.items():
+  #     print(k,v)
+  #     renderPoses[k] = np.array(v)
       
   # p = nyx['p']
   # viewDir = nyx['dir']
@@ -49,4 +49,4 @@ def load_nyx_data(fdir, testSplit=0.1):
   
   iSplit = [iTrain, iVal, []]
   
-  return imgs, c2w, hw, nearFar, bbox, iSplit, renderPoses['mvInvs']
+  return imgs, c2w, hw, nearFar, bbox, iSplit, None
